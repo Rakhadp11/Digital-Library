@@ -40,6 +40,8 @@
             let data = $(this).data()
             let id = data.id
             let jenis = data.jenis
+
+            const modal = new bootstrap.Modal(document.getElementById('actionModal'))
             
             console.log(data);
 
@@ -61,7 +63,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]'). attr('content')
                         },
                         success: function(res){
-                            window.LaravelDataTables["category-table"].ajax.reload()
+                        window.LaravelDataTables["category-table"].ajax.reload()
                         Swal.fire(
                         'Deleted!',
                         res.message,
@@ -74,9 +76,7 @@
                 })
             };
 
-            if(jenis == 'edit'){
-            // const modal = new bootstrap.Modal($('#actionModal'));
-            const modal = new bootstrap.Modal(document.getElementById('actionModal'))
+            if(jenis == 'edit'){            
             $.ajax({
                 method: 'get',
                 url: `{{ url('/category/edit') }}/${id}`,
@@ -88,41 +88,41 @@
             })
         }
 
-            function update(){
-                $('#formAction').submit(function(e){
-                    e.preventDefault()
-                    const _form = this
-                    const formData = new FormData(_form)
+        function update(){
+            $('#formAction').submit(function(e){
+                e.preventDefault()
+                const _form = this
+                const formData = new FormData(_form)
 
-                $.ajax({
-                    method: 'PUT',
-                    url: `{{ url('/category/update') }}/${id}`,
-                    headers:{
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]'). attr('content')
-                        },
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(res){
-                        window.LaravelDataTables["category-table"].ajax.reload()
-                        modal.hide()
-                        Swal.fire(
-                        'Updated!',
-                        res.message,
-                        res.status
-                        )
-                },
-                    error: function(res){
-                        let errors = res.responseJSON?.errors
-                        $(_form).find('.text-danger.text-small').remove()
-                        if(errors){
-                            for(const [key, value] of Object.entries(errors)){
-                                $(`[name='${key}']`).parent().append(`<span class="text-danger text-small">${value}</span>`)
-                            }
+            $.ajax({
+                method: 'POST',
+                url: `{{ url('/category/update') }}/${id}`,
+                headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]'). attr('content')
+                    },
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(res){
+                    window.LaravelDataTables["category-table"].ajax.reload()
+                    modal.hide()
+                    Swal.fire(
+                    'Updated!',
+                    res.message,
+                    res.status
+                    )
+            },
+                error: function(res){
+                    let errors = res.responseJSON?.errors
+                    $(_form).find('.text-danger.text-small').remove()
+                    if(errors){
+                        for(const [key, value] of Object.entries(errors)){
+                            $(`[name='${key}']`).parent().append(`<span class="text-danger text-small">${value}</span>`)
                         }
-                        console.log(errors);
                     }
-                })
+                    console.log(errors);
+                }
+        })
             })
         }
     });

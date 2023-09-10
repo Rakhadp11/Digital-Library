@@ -7,7 +7,6 @@ use App\DataTables\CategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Services\CategoryService;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -40,7 +39,6 @@ class CategoryController extends Controller
 
         $categoryData = CategoryData::from($request->all());
 
-        // Attach the image file name to the data if it was uploaded
         if (isset($imageName)) {
             $categoryData->image = $imageName;
         }
@@ -59,14 +57,25 @@ class CategoryController extends Controller
 
     public function update(CategoryRequest $request, $id)
     {
-        $this->categoryService->updateCategory(CategoryData::from($request->all()), $id);
-        
+        $imageName = null;
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('images'), $imageName);
+        }
+
+        $categoryData = CategoryData::from($request->all());
+
+        if ($imageName) {
+            $categoryData->image = $imageName;
+        }
+
+        $this->categoryService->updateCategory($categoryData, $id);
+
         return response()->json([
             'status' => 'success',
-            'message' => 'Update Successfuly'
+            'message' => 'Update Successfully'
         ]);
-
-        return redirect('/category')->with('success', 'Category Update Successfully');
     }
 
     public function destroy($id)

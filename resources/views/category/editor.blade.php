@@ -4,7 +4,8 @@
         @method('put')
     <div class="modal-header">
     <h5 class="modal-title" id="largeModalLabel">Edit Category</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    {{-- <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+    <a href="{{ route('category') }}"><i class="fa-solid fa-xmark fa-fade"></i></a>
     </div>
     <div class="modal-body">
 
@@ -35,8 +36,7 @@
             <div class="col-sm-3">
                 <img src="{{ asset('images/' . $category->image) }}" alt="Image" width="100" class="img-thumbnail img-preview">
             </div>            
-            <input type="file" id="image" name="image" class="form-control  mt-2 @error('image') is-invalid @enderror" aria-label="6" file example  onchange="previewImage()" value="{{ old('image', $category->image) }}> 
-            <div class="invalid-feedback">
+            <input type="file" id="image" name="image" class="form-control mt-2 @error('image') is-invalid @enderror" aria-label="6" file example onchange="previewImage()" value="{{ old('image', $category->image) }}">
             @error('image')
             <div class="invalid-feedback">
                 {{ $message }}

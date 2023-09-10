@@ -6,7 +6,7 @@
 <div class="container ">
     <div class="row justify-content-center my-4">
         <div class="col-8">
-            <a href="/contact"  class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Back</a>
+            <a href="{{ route('category') }}"  class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Back</a>
             <div class="card-header text-center">Form Create Category</div>
             <div class="card-header">
             <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
