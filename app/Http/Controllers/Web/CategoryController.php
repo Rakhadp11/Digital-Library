@@ -45,7 +45,7 @@ class CategoryController extends Controller
 
         $this->categoryService->storeCategory($categoryData);
 
-        return redirect('/category')->with('success', 'Category Added Successfully');
+        return redirect('/admin/category')->with('success', 'Category Added Successfully');
     }
 
     public function edit($id)
