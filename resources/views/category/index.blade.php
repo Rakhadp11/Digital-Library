@@ -58,7 +58,7 @@
                     if (result.isConfirmed) {
                     $.ajax({
                         method: 'DELETE',
-                        url: `{{ url('/category/delete') }}/${id}`,
+                        url: `{{ url('/admin/category/delete') }}/${id}`,
                         headers:{
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]'). attr('content')
                         },
@@ -79,7 +79,7 @@
             if(jenis == 'edit'){            
             $.ajax({
                 method: 'get',
-                url: `{{ url('/category/edit') }}/${id}`,
+                url: `{{ url('/admin/category/edit') }}/${id}`,
                 success: function(res){
                     $('#actionModal').find('.modal-dialog').html(res)
                     modal.show()
@@ -96,7 +96,7 @@
 
             $.ajax({
                 method: 'POST',
-                url: `{{ url('/category/update') }}/${id}`,
+                url: `{{ url('/admin/category/update') }}/${id}`,
                 headers:{
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]'). attr('content')
                     },
