@@ -17,12 +17,14 @@ class BackendMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        // User = 0
+        // Admin = 1
         if (Auth::check()) {
 
             if (Auth::user()->role == '1') {
                 return $next($request);
             } else {
-                return redirect('/frontend')->with('message', 'Access Denied as you are not Admin!');
+                return redirect('/index')->with('message', 'Access Denied as you are not Admin!');
             }
         } else {
             return redirect('/admin')->with('message', ' Login to access the website info');

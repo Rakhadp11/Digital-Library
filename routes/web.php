@@ -3,24 +3,22 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendEmail;
 use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\Web\Frontend\IndexController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// frontend
+Route::get('/index', [IndexController::class, 'app'])->name('frontend.index');
+Route::get('/about', [AboutController::class, 'about'])->name('frontend.about');
+Route::get('/category', [CategoryController::class, 'app'])->name('frontend.category');
+Route::get('/contact', [ContactController::class, 'app'])->name('frontend.contact');
+Route::get('/single-post', [PostController::class, 'app'])->name('frontend.post');
+Route::get('/search', [SearchController::class, 'app'])->name('frontend.search');
 
 Route::prefix('admin')->middleware(['backend', 'auth'])->group(function () {
 
