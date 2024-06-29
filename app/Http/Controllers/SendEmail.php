@@ -10,6 +10,6 @@ class SendEmail extends Controller
 {
     public function index()
     {
-        Mail::to('test@gmail.com')->send(new RegisterEmail);
+        Mail::to('digitallibrary@gmail.com')->send(new RegisterEmail);
     }
 }

@@ -1,19 +1,19 @@
 <div class="modal-content">
-    <form id="formAction" action="{{ route('category.update', $category->id) }}" method="post" enctype="multipart/form-data" class="mb-5">
+    <form id="formAction" action="{{ route('hero.update', $hero->id) }}" method="post" enctype="multipart/form-data" class="mb-5">
         @csrf
         @method('put')
     <div class="modal-header">
-    <h5 class="modal-title" id="largeModalLabel">Edit Category</h5>
+    <h5 class="modal-title" id="largeModalLabel">Edit Hero</h5>
     {{-- <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-    <a href="{{ route('category') }}"><i class="fa-solid fa-xmark fa-fade"></i></a>
+    <a href="{{ route('hero') }}"><i class="fa-solid fa-xmark fa-fade"></i></a>
     </div>
     <div class="modal-body">
 
         <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" placeholder="Enter name" id="name-val" name="name" onkeyup="validateName()" class="form-control @error('name') is-invalid @enderror" autofocus value="{{ old('name', $category->name) }}">
-            <span id="name-error"></span>
-            @error('name')
+            <label for="title" class="form-label">Title</label>
+            <input type="text" placeholder="Enter title" id="title-val" name="title" onkeyup="validateTitle()" class="form-control @error('title') is-invalid @enderror" autofocus value="{{ old('title', $hero->title) }}">
+            <span id="title-error"></span>
+            @error('title')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
@@ -21,8 +21,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea onkeyup="validateDescription()" placeholder="Enter description" id="description-val" name="description" class="form-control @error('description') is-invalid @enderror">{{ old('description', $category->description) }}</textarea>
+            <label for="deskripsi" class="form-label">Description</label>
+            <textarea onkeyup="validateDescription()" placeholder="Enter description" id="description-val" name="deskripsi" class="form-control @error('description') is-invalid @enderror">{{ old('description', $hero->deskripsi) }}</textarea>
             <span id="description-error"></span>
             @error('description')
             <div class="invalid-feedback">
@@ -32,11 +32,22 @@
         </div>
 
         <div class="mb-3">
+            <label for="button" class="form-label">Button</label>
+            <input type="text" placeholder="Enter button" id="button-val" name="button" onkeyup="validateButton()" class="form-control @error('button') is-invalid @enderror" autofocus value="{{ old('button', $hero->button) }}">
+            <span id="button-error"></span>
+            @error('button')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
             <label for="image">Image</label>
             <div class="col-sm-3">
-                <img src="{{ asset('storage/' . $category->image) }}" alt="Image" width="100" class="img-thumbnail img-preview">
+                <img src="{{ asset('storage/' . $hero->image) }}" alt="Image" width="100" class="img-thumbnail img-preview">
             </div>            
-            <input type="file" id="image" name="image" class="form-control mt-2 @error('image') is-invalid @enderror" aria-label="6" file example onchange="previewImage()" value="{{ old('image', $category->image) }}">
+            <input type="file" id="image" name="image" class="form-control mt-2 @error('image') is-invalid @enderror" aria-label="6" file example onchange="previewImage()" value="{{ old('image', $hero->image) }}">
             @error('image')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -69,23 +80,24 @@
 </style>
 
 <script>
-    let nameError = document.getElementById('name-error');
+    let titleError = document.getElementById('title-error');
     let descriptionError = document.getElementById('description-error');
+    let buttonError = document.getElementById('button-error');
     let submitError = document.getElementById('submit-error');
 
 
-    function validateName() {
-        let name = document.getElementById('name-val').value;
+    function validateTitle() {
+        let title = document.getElementById('title-val').value;
 
-        if (name.length == 0) {
-            nameError.innerHTML = 'name is required';
+        if (title.length == 0) {
+            titleError.innerHTML = 'title is required';
             return false;
         }
-        if(!name.match(/^[A-Za-z]*/)){
-            nameError.innerHTML = 'type name';
+        if(!title.match(/^[A-Za-z]*/)){
+            titleError.innerHTML = 'type title';
             return false;
         }
-        nameError.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+        titleError.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
         return true;
     }
 
@@ -102,9 +114,24 @@
         return true;
     }
 
+    function validateButton() {
+        let button = document.getElementById('button-val').value;
+
+        if (button.length == 0) {
+            buttonError.innerHTML = 'button is required';
+            return false;
+        }
+        if(!button.match(/^[A-Za-z]*/)){
+            buttonError.innerHTML = 'type button';
+            return false;
+        }
+        buttonError.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+        return true;
+    }
+
 
     function validateForm() {
-        if(!validateName() || !validateDescription()) {
+        if(!validateTitle() || !validateDescription() || !validateButton()) {
             submitError.style.display = 'block';
             submitError.innerHTML = 'sorry its still an error, please meet the conditions';
             setTimeout(function(){
