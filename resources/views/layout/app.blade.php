@@ -54,7 +54,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
+                <a class="nav-link" href="/admin/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -78,6 +78,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="/admin/category">Category</a>
+                        <a class="collapse-item" href={{ route('hero') }}>Home Hero</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>
@@ -330,6 +331,29 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">@yield('title')</h1>
 
+                    @if (Route::currentRouteName() == 'dashboard')
+                    <div class="dashboard">
+                        <div class="card-info bg-blue">
+                            <i class="fas fa-shopping-cart icon"></i>
+                            <div class="number">150</div>
+                            <div class="text">Books Borrowed</div>
+                            <a href="#" class="more-info">More info</a>
+                        </div>
+                        <div class="card-info bg-green">
+                            <i class="fas fa-book icon"></i>
+                            <div class="number">100</div>
+                            <div class="text">Books Returned</div>
+                            <a href="#" class="more-info">More info</a>
+                        </div>
+                        <div class="card-info bg-yellow">
+                            <i class="fas fa-user-plus icon"></i>
+                            <div class="number">44</div>
+                            <div class="text">New Users</div>
+                            <a href="#" class="more-info">More info</a>
+                        </div>
+                    </div>
+                    @endif
+
                     @yield('content')
 
                 </div>
@@ -399,5 +423,102 @@
 
     @stack('scripts')
 
+    <style>
+        .info-box {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 20px;
+            width: 100%;
+        }
+        .info-box-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 5px;
+            font-size: 2em;
+            color: #fff;
+            margin-right: 10px;
+        }
+        .bg-blue {
+            background: #00c0ef;
+        }
+        .bg-green {
+            background: #00a65a;
+        }
+        .bg-yellow {
+            background: #f39c12;
+        }
+        .info-box-content {
+            flex: 1;
+        }
+        .info-box-text {
+            font-size: 1.1em;
+            margin: 0;
+            color: #fff;
+
+        }
+        .info-box-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin: 5px 0 0;
+        }
+        .dashboard {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card-info {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            width: calc(33% - 20px);
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+        .card-info .icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5em;
+            color: rgba(0, 0, 0, 0.1);
+        }
+        .card-info .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #fff;
+
+        }
+        .card-info .text {
+            font-size: 1.2em;
+            color: #fff;
+
+        }
+        .bg-blue {
+            background: #00c0ef;
+        }
+        .bg-green {
+            background: #00a65a;
+        }
+        .bg-yellow {
+            background: #f39c12;
+        }
+        .more-info {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+</style>
 </body>
 </html>

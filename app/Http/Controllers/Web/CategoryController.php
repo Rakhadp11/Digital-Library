@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Web;
 
 use App\Data\CategoryData;
 use App\DataTables\CategoryDataTable;
+use App\Exports\CategoryExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Services\CategoryService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryController extends Controller
 {
@@ -34,7 +36,7 @@ class CategoryController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->getClientOriginalExtension();
-            $request->image->move(public_path('images'), $imageName);
+            $request->image->move(public_path('storage'), $imageName);
         }
 
         $categoryData = CategoryData::from($request->all());
@@ -61,7 +63,7 @@ class CategoryController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->getClientOriginalExtension();
-            $request->image->move(public_path('images'), $imageName);
+            $request->image->move(public_path('storage'), $imageName);
         }
 
         $categoryData = CategoryData::from($request->all());
@@ -86,5 +88,9 @@ class CategoryController extends Controller
             'status' => 'success',
             'message' => 'Delete Successfuly'
         ]);
+    }
+    public function export()
+    {
+        return Excel::download(new CategoryExport, 'Category.xlsx');
     }
 }

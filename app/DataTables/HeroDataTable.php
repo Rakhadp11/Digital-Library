@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Category;
+use App\Models\Hero;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class CategoryDataTable extends DataTable
+class HeroDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -36,10 +36,10 @@ class CategoryDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Category $model
+     * @param \App\Models\Hero $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Category $model): QueryBuilder
+    public function query(Hero $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -52,7 +52,7 @@ class CategoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('category-table')
+            ->setTableId('hero-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
@@ -83,8 +83,9 @@ class CategoryDataTable extends DataTable
                 ->width(180)
                 ->searchable(false)
                 ->addClass('dt-center align-text-top'),
-            Column::make('name')->title(__('Name'))->addClass('dt-center align-text-top'),
-            Column::make('description')->title(__('Description'))->addClass('dt-center align-text-top'),
+            Column::make('title')->title(__('Title'))->addClass('dt-center align-text-top'),
+            Column::make('deskripsi')->title(__('Deskripsi'))->addClass('dt-center align-text-top'),
+            Column::make('button')->title(__('Button'))->addClass('dt-center align-text-top'),
             Column::computed('actions')
                 ->exportable(false)
                 ->printable(false)
@@ -101,6 +102,6 @@ class CategoryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Category_' . date('YmdHis');
+        return 'Hero_' . date('YmdHis');
     }
 }

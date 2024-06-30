@@ -27,7 +27,7 @@ class BackendMiddleware
                 return redirect('/index')->with('message', 'Access Denied as you are not Admin!');
             }
         } else {
-            return redirect('/admin')->with('message', ' Login to access the website info');
+            return redirect('/admin/dashboard')->with('message', ' Login to access the website info');
         }
         return $next($request);
     }
