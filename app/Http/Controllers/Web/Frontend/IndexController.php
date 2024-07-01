@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Web\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Hero;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function app()
+    public function index()
     {
-        return view('frontend.app');
+        $heroes = Hero::all();
+        return view('frontend.layout.app', [
+            'heroes' =>  $heroes
+        ]);
     }
 }

@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendEmail;
-use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\Web\Backend\CategoryController;
 use App\Http\Controllers\Web\Frontend\AboutController;
 use App\Http\Controllers\Web\Frontend\IndexController;
-use App\Http\Controllers\Web\HeroController;
+use App\Http\Controllers\Web\Backend\HeroController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -15,7 +15,9 @@ Route::middleware('auth')->group(function () {
 });
 
 // frontend
-Route::get('/', [IndexController::class, 'app'])->name('frontend.index');
+Route::get('/', [IndexController::class, 'index'])->name('frontend.index');
+
+
 Route::get('/about', [AboutController::class, 'about'])->name('frontend.about');
 // Route::get('/category', [CategoryController::class, 'app'])->name('frontend.category');
 // Route::get('/contact', [ContactController::class, 'app'])->name('frontend.contact');
@@ -29,7 +31,7 @@ Route::prefix('admin')->middleware(['backend', 'auth'])->group(function () {
     // });
 
     Route::get('/dashboard', function () {
-        return view('layout.app');
+        return view('backend.layout.app');
     })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::get('/category', [CategoryController::class, 'index'])->name('category');

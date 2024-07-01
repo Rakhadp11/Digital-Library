@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Web\Backend;
 
 use App\Data\HeroData;
 use App\DataTables\HeroDataTable;
 use App\Exports\HeroExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HeroRequest;
+use App\Models\Hero;
 use App\Services\HeroService;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -22,12 +23,12 @@ class HeroController extends Controller
 
     public function index(HeroDataTable $dataTable)
     {
-        return $dataTable->render('hero.index');
+        return $dataTable->render('backend.hero.index');
     }
 
     public function create()
     {
-        return view('hero.create');
+        return view('backend.hero.create');
     }
 
     public function store(HeroRequest $request)
@@ -52,7 +53,7 @@ class HeroController extends Controller
 
     public function edit($id)
     {
-        return view('hero.editor', [
+        return view('backend.hero.editor', [
             'hero' => $this->HeroService->editHero($id),
         ]);
     }
@@ -89,6 +90,7 @@ class HeroController extends Controller
             'message' => 'Delete Successfuly'
         ]);
     }
+
     public function export()
     {
         return Excel::download(new HeroExport, 'Hero.xlsx');
