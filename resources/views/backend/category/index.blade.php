@@ -1,6 +1,6 @@
-@extends('layout.app')
+@extends('backend.layout.app')
 
-@section('title', 'Homepage Hero')
+@section('title', 'Category')
 
 @push('css')
 @endpush
@@ -12,13 +12,13 @@
         </div>
         @endif
         <div class="card">
-            <div class="card-header text-center">Hero Table</div>
+            <div class="card-header text-center">Category Table</div>
             <div class="card-body">
                 <div class="text-left mb-2">
-                    <a href="{{ route('hero.export') }}" class="btn btn-success"><i class="fa-solid fa-file-export"></i> Export</a>
+                    <a href="{{ route('categories.export') }}" class="btn btn-success"><i class="fa-solid fa-file-export"></i> Export</a>
                 </div>
                 <div class="text-right">
-                    <a href="{{ route('hero.create') }}" class="btn btn-primary mb-2"><i class="fa-solid fa-pen"></i> Add Hero </a>
+                    <a href="{{ route('category.create') }}" class="btn btn-primary mb-2"><i class="fa-solid fa-pen"></i> Add Category </a>
                 </div>
                 {{ $dataTable->table() }}
             </div>
@@ -37,7 +37,7 @@
     <!-- Add this script tag before your custom JavaScript -->
     <script>
         $(document).ready(function() {
-            $('#hero-table').on('click','.action', function() {
+            $('#category-table').on('click','.action', function() {
             let data = $(this).data()
             let id = data.id
             let jenis = data.jenis
@@ -59,12 +59,12 @@
                     if (result.isConfirmed) {
                     $.ajax({
                         method: 'DELETE',
-                        url: `{{ url('/admin/hero/delete') }}/${id}`,
+                        url: `{{ url('/admin/category/delete') }}/${id}`,
                         headers:{
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]'). attr('content')
                         },
                         success: function(res){
-                        window.LaravelDataTables["hero-table"].ajax.reload()
+                        window.LaravelDataTables["category-table"].ajax.reload()
                         Swal.fire(
                         'Deleted!',
                         res.message,
@@ -80,7 +80,7 @@
             if(jenis == 'edit'){            
             $.ajax({
                 method: 'get',
-                url: `{{ url('/admin/hero/edit') }}/${id}`,
+                url: `{{ url('/admin/category/edit') }}/${id}`,
                 success: function(res){
                     $('#actionModal').find('.modal-dialog').html(res)
                     modal.show()
@@ -97,15 +97,15 @@
 
             $.ajax({
                 method: 'POST',
-                url: `{{ url('/admin/hero/update') }}/${id}`,
+                url: `{{ url('/admin/category/update') }}/${id}`,
                 headers:{
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]'). attr('content')
                     },
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function(res){
-                    window.LaravelDataTables["hero-table"].ajax.reload()
+                    window.LaravelDataTables["category-table"].ajax.reload()
                     modal.hide()
                     Swal.fire(
                     'Updated!',

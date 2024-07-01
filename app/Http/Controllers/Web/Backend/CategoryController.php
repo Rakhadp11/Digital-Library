@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Web\Backend;
 
 use App\Data\CategoryData;
 use App\DataTables\CategoryDataTable;
@@ -22,12 +22,12 @@ class CategoryController extends Controller
 
     public function index(CategoryDataTable $dataTable)
     {
-        return $dataTable->render('category.index');
+        return $dataTable->render('backend.category.index');
     }
 
     public function create()
     {
-        return view('category.create');
+        return view('backend.category.create');
     }
 
     public function store(CategoryRequest $request)
@@ -52,7 +52,7 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        return view('category.editor', [
+        return view('backend.category.editor', [
             'category' => $this->categoryService->editCategory($id),
         ]);
     }
