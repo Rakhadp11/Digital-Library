@@ -1,6 +1,6 @@
 @extends('backend.layout.app')
 
-@section('title', 'Homepage Hero')
+@section('title', 'Homepage Explore Feature')
 
 @push('css')
 @endpush
@@ -12,13 +12,13 @@
         </div>
         @endif
         <div class="card">
-            <div class="card-header text-center">Hero Table</div>
+            <div class="card-header text-center">Explore Feature Table</div>
             <div class="card-body">
                 <div class="text-left mb-2">
-                    <a href="{{ route('hero.export') }}" class="btn btn-success"><i class="fa-solid fa-file-export"></i> Export</a>
+                    <a href="{{ route('explore-feature.export') }}" class="btn btn-success"><i class="fa-solid fa-file-export"></i> Export</a>
                 </div>
                 <div class="text-right">
-                    <a href="{{ route('hero.create') }}" class="btn btn-primary mb-2"><i class="fa-solid fa-pen"></i> Add Hero </a>
+                    <a href="{{ route('explore-feature.create') }}" class="btn btn-primary mb-2"><i class="fa-solid fa-pen"></i> Add Explore Feature </a>
                 </div>
                 {{ $dataTable->table() }}
             </div>
@@ -36,7 +36,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#hero-table').on('click','.action', function() {
+            $('#explore-feature-table').on('click','.action', function() {
             let data = $(this).data()
             let id = data.id
             let jenis = data.jenis
@@ -58,12 +58,12 @@
                     if (result.isConfirmed) {
                     $.ajax({
                         method: 'DELETE',
-                        url: `{{ url('/admin/hero/delete') }}/${id}`,
+                        url: `{{ url('/admin/explore-feature/delete') }}/${id}`,
                         headers:{
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]'). attr('content')
                         },
                         success: function(res){
-                        window.LaravelDataTables["hero-table"].ajax.reload()
+                        window.LaravelDataTables["explore-feature-table"].ajax.reload()
                         Swal.fire(
                         'Deleted!',
                         res.message,
@@ -79,7 +79,7 @@
             if(jenis == 'edit'){            
             $.ajax({
                 method: 'get',
-                url: `{{ url('/admin/hero/edit') }}/${id}`,
+                url: `{{ url('/admin/explore-feature/edit') }}/${id}`,
                 success: function(res){
                     $('#actionModal').find('.modal-dialog').html(res)
                     modal.show()
@@ -96,7 +96,7 @@
 
             $.ajax({
                 method: 'POST',
-                url: `{{ url('/admin/hero/update') }}/${id}`,
+                url: `{{ url('/admin/explore-feature/update') }}/${id}`,
                 headers:{
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]'). attr('content')
                     },
@@ -104,7 +104,7 @@
                 processData: false,
                 contentType: false,
                 success: function(res){
-                    window.LaravelDataTables["hero-table"].ajax.reload()
+                    window.LaravelDataTables["explore-feature-table"].ajax.reload()
                     modal.hide()
                     Swal.fire(
                     'Updated!',

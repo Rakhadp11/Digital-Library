@@ -77,9 +77,19 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="/admin/category">Category</a>
+                        <a class="collapse-item" href={{ route('category') }}>Category</a>
                         <a class="collapse-item" href={{ route('hero') }}>Home Hero</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <a class="collapse-item" href={{ route('hero-feature') }}>Hero Feature</a>
+                        <a class="collapse-item" href={{ route('explore-feature') }}>Explore Feature</a>
+                        {{-- <a class="collapse-item" href='#'>Information</a>
+                        <a class="collapse-item" href='#'>Footer</a>
+                        <a class="collapse-item" href='#'>Repository Book</a>
+                        <a class="collapse-item" href='#'>Book</a>
+                        <a class="collapse-item" href='#'>Member</a>
+                        <a class="collapse-item" href='#'>Buku Pinjam</a>
+                        <a class="collapse-item" href='#'>Buku Kembali</a>
+                        <a class="collapse-item" href='#'>Quiz</a>
+                        <a class="collapse-item" href='#'>HasilQuiz</a> --}}
                     </div>
                 </div>
             </li>

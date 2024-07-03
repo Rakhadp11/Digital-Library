@@ -2,25 +2,16 @@
 
 namespace App\Http\Controllers\Web\Backend;
 
-use App\Data\HeroData;
 use App\DataTables\HeroDataTable;
 use App\Exports\HeroExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HeroRequest;
 use App\Models\Hero;
-use App\Services\HeroService;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class HeroController extends Controller
 {
-    protected $HeroService;
-
-    public function __construct(HeroService $HeroService)
-    {
-        $this->HeroService = $HeroService;
-        // $this->middleware('auth', ['except' => 'index', 'create']);
-    }
-
     public function index(HeroDataTable $dataTable)
     {
         return $dataTable->render('backend.hero.index');
@@ -40,22 +31,20 @@ class HeroController extends Controller
             $request->image->move(public_path('storage'), $imageName);
         }
 
-        $HeroData = HeroData::from($request->all());
-
+        $heroData = $request->all();
         if (isset($imageName)) {
-            $HeroData->image = $imageName;
+            $heroData['image'] = $imageName;
         }
 
-        $this->HeroService->storeHero($HeroData);
+        Hero::create($heroData);
 
         return redirect('/admin/hero')->with('success', 'Hero Added Successfully');
     }
 
     public function edit($id)
     {
-        return view('backend.hero.editor', [
-            'hero' => $this->HeroService->editHero($id),
-        ]);
+        $hero = Hero::findOrFail($id);
+        return view('backend.hero.editor', compact('hero'));
     }
 
     public function update(HeroRequest $request, $id)
@@ -67,13 +56,13 @@ class HeroController extends Controller
             $request->image->move(public_path('storage'), $imageName);
         }
 
-        $HeroData = HeroData::from($request->all());
-
+        $heroData = $request->all();
         if ($imageName) {
-            $HeroData->image = $imageName;
+            $heroData['image'] = $imageName;
         }
 
-        $this->HeroService->updateHero($HeroData, $id);
+        $hero = Hero::findOrFail($id);
+        $hero->update($heroData);
 
         return response()->json([
             'status' => 'success',
@@ -83,11 +72,11 @@ class HeroController extends Controller
 
     public function destroy($id)
     {
-        $this->HeroService->destroyHero($id);
+        Hero::destroy($id);
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Delete Successfuly'
+            'message' => 'Delete Successfully'
         ]);
     }
 
