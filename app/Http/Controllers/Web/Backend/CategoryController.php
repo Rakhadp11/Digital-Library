@@ -2,24 +2,16 @@
 
 namespace App\Http\Controllers\Web\Backend;
 
-use App\Data\CategoryData;
 use App\DataTables\CategoryDataTable;
 use App\Exports\CategoryExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
-use App\Services\CategoryService;
+use App\Models\Category;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryController extends Controller
 {
-    protected $categoryService;
-
-    public function __construct(CategoryService $categoryService)
-    {
-        $this->categoryService = $categoryService;
-        // $this->middleware('auth', ['except' => 'index', 'create']);
-    }
-
     public function index(CategoryDataTable $dataTable)
     {
         return $dataTable->render('backend.category.index');
@@ -39,22 +31,20 @@ class CategoryController extends Controller
             $request->image->move(public_path('storage'), $imageName);
         }
 
-        $categoryData = CategoryData::from($request->all());
-
+        $categoryData = $request->all();
         if (isset($imageName)) {
-            $categoryData->image = $imageName;
+            $categoryData['image'] = $imageName;
         }
 
-        $this->categoryService->storeCategory($categoryData);
+        Category::create($categoryData);
 
         return redirect('/admin/category')->with('success', 'Category Added Successfully');
     }
 
     public function edit($id)
     {
-        return view('backend.category.editor', [
-            'category' => $this->categoryService->editCategory($id),
-        ]);
+        $category = Category::findOrFail($id);
+        return view('backend.category.editor', compact('category'));
     }
 
     public function update(CategoryRequest $request, $id)
@@ -66,13 +56,13 @@ class CategoryController extends Controller
             $request->image->move(public_path('storage'), $imageName);
         }
 
-        $categoryData = CategoryData::from($request->all());
-
+        $categoryData = $request->all();
         if ($imageName) {
-            $categoryData->image = $imageName;
+            $categoryData['image'] = $imageName;
         }
 
-        $this->categoryService->updateCategory($categoryData, $id);
+        $category = Category::findOrFail($id);
+        $category->update($categoryData);
 
         return response()->json([
             'status' => 'success',
@@ -82,15 +72,17 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $this->categoryService->destroyCategory($id);
+        Category::destroy($id);
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Delete Successfuly'
+            'message' => 'Delete Successfully'
         ]);
     }
+
     public function export()
     {
         return Excel::download(new CategoryExport, 'Category.xlsx');
     }
 }
+

@@ -147,3 +147,8 @@
     margin-top: 60px;
 
 }
+
+.feature-section img {
+    width: 220px;
+    height: auto;
+}

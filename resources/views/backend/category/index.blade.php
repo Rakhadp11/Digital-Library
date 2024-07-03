@@ -34,7 +34,6 @@
 @endsection
 
 @push('scripts')
-    <!-- Add this script tag before your custom JavaScript -->
     <script>
         $(document).ready(function() {
             $('#category-table').on('click','.action', function() {

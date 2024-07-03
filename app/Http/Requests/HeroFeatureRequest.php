@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class HeroRequest extends FormRequest
+class HeroFeatureRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,7 @@ class HeroRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'deskripsi' => 'required|min:10',
             'button' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }

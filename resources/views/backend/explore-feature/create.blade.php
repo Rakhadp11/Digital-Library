@@ -1,15 +1,15 @@
 @extends('backend.layout.app')
 
-@section('title', 'Craeate Hero')
+@section('title', 'Craeate Explore Feature')
 
 @section('content')
 <div class="container ">
     <div class="row justify-content-center my-4">
         <div class="col-8">
-            <a href="{{ route('hero') }}"  class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Back</a>
-            <div class="card-header text-center">Form Create Hero</div>
+            <a href="{{ route('explore-feature') }}"  class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Back</a>
+            <div class="card-header text-center">Form Create Explore Feature</div>
             <div class="card-header">
-            <form action="{{ route('hero.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('explore-feature.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
@@ -27,6 +27,28 @@
                     <textarea onkeyup="validateDescription()" placeholder="Enter description" id="description-val" name="deskripsi" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
                     <span id="description-error"></span>
                     @error('description')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="card_title" class="form-label">Card Title</label>
+                    <input type="text" placeholder="Enter card title" id="card_title-val" name="card_title" onkeyup="validateCardTitle()" class="form-control @error('card_title') is-invalid @enderror" autofocus value="{{ old('card_title') }}">
+                    <span id="card_title-error"></span>
+                    @error('card_title')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="card_deskripsi" class="form-label">Card Description</label>
+                    <textarea onkeyup="validateCardDescription()" placeholder="Enter card description" id="card_deskripsi-val" name="card_deskripsi" class="form-control @error('card_deskripsi') is-invalid @enderror">{{ old('card_deskripsi') }}</textarea>
+                    <span id="card_deskripsi-error"></span>
+                    @error('card_deskripsi')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -89,6 +111,8 @@
 <script>
     let titleError = document.getElementById('title-error');
     let descriptionError = document.getElementById('description-error');
+    let card_titleError = document.getElementById('card_title-error');
+    let card_deskripsiError = document.getElementById('card_deskripsi-error');
     let buttonError = document.getElementById('button-error');
     let submitError = document.getElementById('submit-error');
 
@@ -121,6 +145,34 @@
         return true;
     }
 
+    function validateCardTitle() {
+        let card_title = document.getElementById('card_title-val').value;
+
+        if (card_title.length == 0) {
+            card_titleError.innerHTML = 'card_title is required';
+            return false;
+        }
+        if(!card_title.match(/^[A-Za-z]*/)){
+            card_titleError.innerHTML = 'type card_title';
+            return false;
+        }
+        card_titleError.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+        return true;
+    }
+
+    function validateCardDescription() {
+        let card_deskripsi = document.getElementById('card_deskripsi-val').value;
+        let required = 15;
+        let left = required - card_deskripsi.length;
+
+        if (left > 0) {
+            card_deskripsiError.innerHTML = left + ' more characters required';
+            return false;
+        }
+        card_deskripsiError.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+        return true;
+    }
+
     function validateButton() {
         let button = document.getElementById('button-val').value;
 
@@ -138,7 +190,7 @@
 
 
     function validateForm() {
-        if(!validateTitle() || !validateDescription() || !validateButton()) {
+        if(!validateTitle() || !validateDescription() || !validateButton() || !validateCardTitle() || !validateCardDescription()) {
             submitError.style.display = 'block';
             submitError.innerHTML = 'sorry its still an error, please meet the conditions';
             setTimeout(function(){

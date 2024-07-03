@@ -93,6 +93,7 @@
             <div class="scrolling-wrapper">
                 <div class="card">
                     <div class="card-body">
+                        <img src="images/1691201323.jpg" alt="">
                         <h5 class="card-title">E-Library Access</h5>
                         <p class="card-text">Access thousands of e-books and academic resources.</p>
                         <a href="#" class="btn btn-primary">Explore Now</a>
@@ -100,6 +101,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
+                        <img src="images/buku2.png" alt="">
                         <h5 class="card-title">Digital Archives</h5>
                         <p class="card-text">Explore historical documents and archives digitally.</p>
                         <a href="#" class="btn btn-primary">Explore Now</a>
