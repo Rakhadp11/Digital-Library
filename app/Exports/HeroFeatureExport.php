@@ -4,8 +4,9 @@ namespace App\Exports;
 
 use App\Models\HeroFeature;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class HeroFeatureExport implements FromCollection
+class HeroFeatureExport implements FromCollection, WithHeadings
 {
     /**
      * @return \Illuminate\Support\Collection

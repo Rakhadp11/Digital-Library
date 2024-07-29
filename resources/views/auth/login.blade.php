@@ -3,11 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Register</title>
+        <title>Login</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="icon" href="{{ asset('images/logo-desa.png') }}" type="image/png">
         <style>
         .container-fluid {
             height: 100vh;
@@ -192,6 +193,17 @@
                 <div class="login-box p-5 bg-light rounded shadow">
                     <h2>Login</h2>
                     <p>Enter your account details</p>
+                                                <!-- Flash Messages -->
+                                                @if(session('error'))
+                                                <div class="alert alert-danger">
+                                                    {{ session('error') }}
+                                                </div>
+                                                @endif
+                                                @if(session('success'))
+                                                    <div class="alert alert-success">
+                                                        {{ session('success') }}
+                                                    </div>
+                                                @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="mb-3">
