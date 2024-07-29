@@ -1,1 +1,2 @@
-<img src="{{ asset('assets\logo-comp.png') }}" alt="">
+<img src="{{ asset('images/logo-desa.png') }}" alt="Logo" height="40">
+

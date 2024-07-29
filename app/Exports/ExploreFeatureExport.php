@@ -4,8 +4,9 @@ namespace App\Exports;
 
 use App\Models\ExploreFeature;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ExploreFeatureExport implements FromCollection
+class ExploreFeatureExport implements FromCollection, WithHeadings
 {
     /**
      * @return \Illuminate\Support\Collection

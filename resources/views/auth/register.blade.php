@@ -8,6 +8,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="icon" href="{{ asset('images/logo-desa.png') }}" type="image/png">
         <style>
             .container-fluid {
                 height: 100vh;
@@ -241,16 +242,7 @@
                                     @endforeach
                                 </ul>
                             @endif
-                        </div>
-
-                        <div class="mb-3">
-                            <x-input-label for="role" :value="__('Select Role')" />
-                            <select id="role" name="role" class="form-control mt-1" required>
-                                <option value="" selected disabled>Role</option>
-                                <option value="1">Admin</option>
-                                <option value="0">User</option>
-                            </select>
-                        </div>     
+                        </div>    
 
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <a class="text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

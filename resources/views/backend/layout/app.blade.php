@@ -33,6 +33,7 @@
 
     <link  href="{{ asset('https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css') }}" rel="stylesheet">
 
+    <link rel="icon" href="{{ asset('images/logo-desa.png') }}" type="image/png">
 </head>
 
 <body id="page-top">
@@ -45,8 +46,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
-                <img src="{{ asset('assets\logo-comp.png') }}" alt="Logo Company" width="40">
-                <div class="sidebar-brand-text mx-3">MY-ARTICLE</div>
+                <img src="{{ asset('images/logo-desa.png') }}" alt="Logo" height="40">
+                <div class="sidebar-brand-text mx-3">LIBRARY</div>
             </a>
 
             <!-- Divider -->
@@ -72,54 +73,27 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Components Feature</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href={{ route('category') }}>Category</a>
+                        <a class="collapse-item" href={{ route('user.admin') }}>Data User</a>
+                        <a class="collapse-item" href={{ route('member.admin') }}>Data Member</a>
+                        <a class="collapse-item" href={{ route('borrow.index') }}>Data Peminjaman</a>
+                        <a class="collapse-item" href={{ route('returnbook') }}>Data Pengembalian</a>
                         <a class="collapse-item" href={{ route('hero') }}>Home Hero</a>
                         <a class="collapse-item" href={{ route('hero-feature') }}>Hero Feature</a>
-                        <a class="collapse-item" href={{ route('explore-feature') }}>Explore Feature</a>
-                        {{-- <a class="collapse-item" href='#'>Information</a>
-                        <a class="collapse-item" href='#'>Footer</a>
-                        <a class="collapse-item" href='#'>Repository Book</a>
-                        <a class="collapse-item" href='#'>Book</a>
-                        <a class="collapse-item" href='#'>Member</a>
-                        <a class="collapse-item" href='#'>Buku Pinjam</a>
-                        <a class="collapse-item" href='#'>Buku Kembali</a>
-                        <a class="collapse-item" href='#'>Quiz</a>
-                        <a class="collapse-item" href='#'>HasilQuiz</a> --}}
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        {{-- <a class="collapse-item" href={{ route('explore-feature') }}>Explore Feature</a> --}}
+                        <a class="collapse-item" href={{ route('book') }}>Book</a>
+                        <a class="collapse-item" href={{ route('quiz.admin') }}>Quiz</a>
+                        <a class="collapse-item" href={{ route('question') }}>Question</a>
                     </div>
                 </div>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
 
         </ul>
         <!-- End of Sidebar -->
@@ -132,11 +106,6 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
 
                     <!-- Topbar Search -->
                     <form
@@ -161,140 +130,6 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ asset('backend/sb_admin/img/undraw_profile_1.svg') }}"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ asset('backend/sb_admin/img/undraw_profile_2.svg') }}"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ asset('backend/sb_admin/img/undraw_profile_3.svg') }}"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -310,18 +145,6 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -329,7 +152,6 @@
                                 </a>
                             </div>
                         </li>
-
                     </ul>
 
                 </nav>
@@ -342,53 +164,51 @@
                     <h1 class="h3 mb-4 text-gray-800">@yield('title')</h1>
 
                     @if (Route::currentRouteName() == 'dashboard')
-                    <div class="dashboard">
-                        <div class="card-info bg-blue">
-                            <i class="fas fa-shopping-cart icon"></i>
-                            <div class="number">150</div>
-                            <div class="text">Books Borrowed</div>
-                            <a href="#" class="more-info">More info</a>
+                        <div class="dashboard">
+                            <!-- Books Borrowed Card -->
+                            <div class="card-info bg-blue">
+                                <i class="fas fa-shopping-cart icon"></i>
+                                <div class="number">{{ $totalBorrowed }}</div>
+                                <div class="text">Daftar Peminjaman Buku</div>
+                                <a href="/admin/borrow" class="more-info" data-target="#borrowedTable">More info</a>
+                            </div>
+                            <!-- Books Returned Card -->
+                            <div class="card-info bg-green">
+                                <i class="fas fa-book icon"></i>
+                                <div class="number">{{ $totalReturned }}</div>
+                                <div class="text">Daftar Pengembalian Buku</div>
+                                <a href="/admin/returnbook" class="more-info" data-target="#returnedTable">More info</a>
+                            </div>
+                            <!-- New Users Card -->
+                            <div class="card-info bg-yellow">
+                                <i class="fas fa-user-plus icon"></i>
+                                <div class="number">{{ $totalMembers }}</div>
+                                <div class="text">Member Terdaftar</div>
+                                <a href="/admin/member" class="more-info" data-target="#membersTable">More info</a>
+                            </div>
                         </div>
-                        <div class="card-info bg-green">
-                            <i class="fas fa-book icon"></i>
-                            <div class="number">100</div>
-                            <div class="text">Books Returned</div>
-                            <a href="#" class="more-info">More info</a>
+                        <div class="charts-container">
+                            <div class="col-md-4">
+                                <canvas id="chartBorrowed" width="400" height="200"></canvas>
+                            </div>
+                            <div class="col-md-4">
+                                <canvas id="chartReturned" width="400" height="200"></canvas>
+                            </div>
+                            <div class="col-md-4">
+                                <canvas id="chartMembers" width="400" height="200"></canvas>
+                            </div>
                         </div>
-                        <div class="card-info bg-yellow">
-                            <i class="fas fa-user-plus icon"></i>
-                            <div class="number">44</div>
-                            <div class="text">New Users</div>
-                            <a href="#" class="more-info">More info</a>
-                        </div>
-                    </div>
                     @endif
+
 
                     @yield('content')
 
-                </div>
-                <!-- /.container-fluid -->
 
+                </div>
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
         </div>
-        <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
@@ -407,7 +227,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <!-- Include the Logout Form inside the modal -->
-                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                    <form id="logout-form" method="POST" action="{{ route('admin.logout') }}">
                         @csrf
                         <button class="btn btn-primary">Logout</button>
                     </form>
@@ -415,6 +235,102 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/admin/dashboard-data')
+                .then(response => response.json())
+                .then(data => {
+                    // Chart for Books Borrowed
+                    var ctxBorrowed = document.getElementById('chartBorrowed');
+                    if (ctxBorrowed) {
+                        ctxBorrowed = ctxBorrowed.getContext('2d');
+                        new Chart(ctxBorrowed, {
+                            type: 'bar',
+                            data: {
+                                labels: data.borrowedLabels,
+                                datasets: [{
+                                    label: 'Books Borrowed',
+                                    data: data.borrowedValues,
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        console.error('Element with ID "chartBorrowed" not found');
+                    }
+
+                    // Chart for Books Returned
+                    var ctxReturned = document.getElementById('chartReturned');
+                    if (ctxReturned) {
+                        ctxReturned = ctxReturned.getContext('2d');
+                        new Chart(ctxReturned, {
+                            type: 'bar',
+                            data: {
+                                labels: data.returnedLabels,
+                                datasets: [{
+                                    label: 'Books Returned',
+                                    data: data.returnedValues,
+                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        console.error('Element with ID "chartReturned" not found');
+                    }
+
+                    // Chart for New Members
+                    var ctxMembers = document.getElementById('chartMembers');
+                    if (ctxMembers) {
+                        ctxMembers = ctxMembers.getContext('2d');
+                        new Chart(ctxMembers, {
+                            type: 'bar',
+                            data: {
+                                labels: data.membersLabels,
+                                datasets: [{
+                                    label: 'New Members',
+                                    data: data.membersValues,
+                                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                                    borderColor: 'rgba(255, 206, 86, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        console.error('Element with ID "chartMembers" not found');
+                    }
+                });
+        });
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('backend/sb_admin/vendor/jquery/jquery.min.js') }}"></script>
@@ -429,11 +345,37 @@
     <script src="{{ asset('https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js') }}"></script>
 
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/chart.js') }}"></script>
+
+
     {{-- <script src="{{ asset('js\app.js') }}"></script> --}}
 
     @stack('scripts')
 
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
     <style>
+        .charts-container {
+            display: flex;
+            gap: 20px; 
+            justify-content: space-around; 
+            padding: 20px;
+            margin-top: 250px;
+        }
+
+        .chart-card {
+            width: 500px; 
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: auto !important; 
+        }
         .info-box {
             display: flex;
             align-items: center;

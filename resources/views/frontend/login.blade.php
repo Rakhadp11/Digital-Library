@@ -1,6 +1,16 @@
 <!-- Session Status -->
 <x-auth-session-status class="mb-4" :status="session('status')" />
-
+    <!-- Flash Messages -->
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 <form method="POST" action="{{ route('login') }}">
     @csrf
 
@@ -43,3 +53,24 @@
         </x-primary-button>
     </div>
 </form>
+
+<style>
+    .alert {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+</style>

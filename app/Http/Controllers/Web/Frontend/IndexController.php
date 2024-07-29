@@ -11,7 +11,7 @@ class IndexController extends Controller
     public function index()
     {
         $heroes = Hero::all();
-        return view('frontend.layout.app', [
+        return view('frontend.home.index', [
             'heroes' =>  $heroes
         ]);
     }
