@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use App\Models\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class ShareNotifications
 {
@@ -17,9 +18,12 @@ class ShareNotifications
      */
     public function handle(Request $request, Closure $next)
     {
-        $notifications = Notification::where('read', false)->get();
-
-        view()->share('notifications', $notifications);
+        if (Auth::check()) {
+            $notifications = Notification::where('user_id', Auth::id())
+                ->where('read', false)
+                ->get();
+            view()->share('notifications', $notifications);
+        }
 
         return $next($request);
     }

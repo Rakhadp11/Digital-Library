@@ -18,19 +18,30 @@
         height: 350px; /* Menetapkan tinggi tetap untuk gambar */
         object-fit: contain; /* Gambar tidak akan terpotong dan akan menyesuaikan dalam ruang yang tersedia */
     }
+    /* Konten dalam card */
+    .card-body {
+        padding: 25px;
+        width: 100%;
+    }
+
     .card-title {
-        font-size: 18px;
+        font-size: 0.9em;
         font-weight: bold;
+        margin-top: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
+
     .card-text {
-        font-size: 14px;
+        font-size: 0.75em;
+        color: #555;
+        margin-bottom: 8px;
     }
-    .btn-custom {
-        background-color: #ffcc00;
-        color: #000;
-    }
-    .category-section {
-        margin: 20px 0;
+
+    .btn-primary {
+        font-size: 0.8em;
+        padding: 5px 8px;
     }
     .category-section button {
         margin-right: 10px;
@@ -42,9 +53,62 @@
         flex-wrap: wrap;
         margin-bottom: 10px;
     }
+
     @media (max-width: 720px) {
-        .filter {
+        .book-card {
+            flex: 1 1 40%;
+            max-width: 30%;
+        }
+        .card-body {
+        padding: 5px;
+        width: 100%;
+    }
+
+        .filter  {
             justify-content: center;
+        }
+
+        .filter button {
+            font-size: 0.6em;
+        }
+
+        .card-img-top {
+            height: 180px; /* Sesuaikan tinggi gambar di layar kecil */
+        }
+        .card-text {
+        font-size: 0.50em;
+        color: #555;
+        margin-bottom: 8px;
+    }
+    .card-title {
+        font-size: 0.6em; 
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        font-size: 0.55em;
+        padding: 3px 6px;
+
+    }
+
+    .container h1{
+        font-size: 25px;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 100px; /* Menetapkan tinggi tetap untuk gambar */
+        object-fit: contain;
+    }
+    #booksContainer{
+        margin-left: 30px;
+    }
+}
+
+    @media (max-width: 576px) {
+        .book-card {
+            flex: 1 1 40%;
+            max-width: 30%;
         }
     }
 </style>

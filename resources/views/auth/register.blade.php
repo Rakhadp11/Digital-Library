@@ -157,6 +157,20 @@
                 transform: translateX(-50%);
                 width: 32px;
             }
+            .carousel-inner .carousel-item:nth-child(1) img {
+                max-width: 88% !important;
+                height: auto !important;
+                display: block;
+                margin: 0 auto;
+            }
+            .carousel-inner .carousel-item:nth-child(3) img {
+                max-width: 70% !important;
+                height: auto !important;
+                display: block;
+                margin: 0 auto;
+                margin-top: 75px;
+                padding-bottom: 50px;
+            }
         }
             
         </style>

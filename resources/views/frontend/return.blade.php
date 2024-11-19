@@ -12,6 +12,16 @@
         background-color: #004af7;
         border-color: #2a38ff;
     }
+
+    .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Memberikan scroll yang halus pada perangkat iOS */
+}
+
+/* Mengatur elemen tabel agar tidak pecah */
+.table {
+    white-space: nowrap;
+}
 </style>
 @endpush
 
@@ -21,23 +31,26 @@
         <p><strong><i class="fa-solid fa-circle-info"></i> Informasi</strong></p>
         <p>Kembalikan buku sesuai dengan tanggal pengembalian peminjaman</p>
     </div>
-    <table id="borrowing-table" class="table table-bordered">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Cover Image</th>
-                <th>Judul Buku</th>
-                <th>Nama</th>
-                <th>Tanggal Peminjaman</th>
-                <th>Tanggal Pengembalian</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table id="borrowing-table" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Cover Image</th>
+                    <th>Judul Buku</th>
+                    <th>Nama</th>
+                    <th>Tanggal Peminjaman</th>
+                    <th>Tanggal Pengembalian</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 </div>
+
 
 <div class="modal fade" id="bookDetailModal" tabindex="-1" role="dialog" aria-labelledby="bookDetailModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -5,6 +5,25 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    min-height: 100vh;
+    /* Mengisi layar penuh */
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    /* Membuat bagian konten mengisi ruang */
+}
+
 .navbar {
     background-color: #f1f1f1;
 }
@@ -41,6 +60,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding: 50px 0;
 }
 
 .hero-content {
@@ -143,7 +163,7 @@
 /* Footer */
 .footer-section .col-md-3 {
     margin-bottom: 20px;
-    
+
 }
 
 .footer-section img {
@@ -151,25 +171,82 @@
     height: auto;
 }
 
+.hero-feature .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Untuk memusatkan elemen jika perlu */
+    gap: 16px;
+    /* Atur jarak antar item */
+}
+
+.hero-feature .col-md-4,
+.hero-feature .col-md-6 {
+    flex: 1 1 30%;
+    /* Mengatur elemen agar fleksibel dan mengisi ruang */
+    max-width: 30%;
+    /* Pastikan item tidak lebih besar dari lebar container */
+}
+
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .hero-image-container {
-        display: none;
+    .hero-section {
+        flex-direction: row;
+        /* Arrange items side by side */
+        padding: 20px;
+        /* Reduced padding for mobile */
+        margin-top: 40px;
     }
 
-    .hero-section {
-        flex-direction: column;
-        text-align: center;
-        margin-top: 130px;
+    .hero-content {
+        flex: 1;
+        max-width: 50%;
+        /* Limit text content to half of the screen */
+    }
+
+    .hero-section img {
+        flex: 1;
+        max-width: 60%;
+        /* Set image to occupy the other half of the screen */
+        height: auto;
+        margin-top: -168px;
+        right: 0;
+        margin-left: 180px;
+
+        /* Remove top margin for better alignment */
+    }
+
+    /* Adjust title font size for mobile */
+    .hero-section h1 {
+        font-size: 0.93rem;
+        /* Smaller title */
+        margin-bottom: 10px;
+        flex: 1;
+        max-width: 55%;
+        margin-left: -10px;
+
+    }
+
+    /* Adjust paragraph font size for mobile */
+    .hero-section p {
+        font-size: 0.65rem;
+        margin-bottom: 15px;
+        flex: 1;
+        max-width: 55%;
+        margin-left: -10px;
+    }
+
+    /* Adjust button font size for mobile */
+    .hero-section button {
+        font-size: 0.6rem;
+        padding: 6px 15px;
+        margin-left: -10px;
     }
 
     .information-section .row {
         flex-direction: column;
         text-align: center;
-    }
-
-    .information-section .col-md-6 {
-        margin-bottom: 20px;
     }
 
     .footer-section .row {
@@ -178,6 +255,10 @@
     }
 
     .footer-section .col-md-3 {
+        margin-bottom: 20px;
+    }
+
+    .information-section .col-md-6 {
         margin-bottom: 20px;
     }
 
@@ -191,5 +272,58 @@
         justify-content: center;
         text-align: center;
         color: white;
+    }
+
+    .information-section .card-title {
+        font-size: 1.4rem;
+    }
+
+    .information-section .card-text {
+        font-size: 0.8rem;
+    }
+
+    .information-section .btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+
+    .hero-feature .col-md-4 {
+        flex: 1 1 30%;
+        max-width: 30%;
+        padding: 0;
+    }
+
+    .hero-feature .col-md-6 {
+        flex: 1 1 45%;
+        /* Atur ulang lebar item Pinjam Buku dan Kembali Buku */
+        max-width: 45%;
+        /* Pastikan item tidak melebihi lebar ini */
+    }
+
+    .card {
+        padding: 0;
+        /* Kurangi padding */
+    }
+
+    .card-icon {
+        font-size: 3em;
+        /* Perkecil ukuran ikon */
+    }
+
+    .card-title {
+        font-size: 0.9em;
+        /* Perkecil ukuran judul */
+    }
+
+    .card-text {
+        font-size: 0.8em;
+        /* Perkecil ukuran teks */
+    }
+
+    .btn {
+        font-size: 0.55em;
+        /* Perkecil ukuran tombol */
+        padding: 3px 8px;
+        /* Kurangi padding tombol */
     }
 }

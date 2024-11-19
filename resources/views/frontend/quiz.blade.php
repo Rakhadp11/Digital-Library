@@ -9,7 +9,10 @@
 @push('css')
     <style>
         body {
-            background-color: #ffec16;
+            background-image: url('/images/bag-quiz.jpg');
+            background-size: cover; /* Menyesuaikan gambar agar memenuhi layar */
+            background-position: center; /* Menempatkan gambar di tengah */
+            background-repeat: no-repeat; 
             font-family: Arial, sans-serif;
         }
         .quiz-content {

@@ -3,6 +3,237 @@
 @section('title', 'Homepage')
 
 @push('css')
+<style>
+
+.quiz-card, .member-card {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    position: relative;
+    color: black;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Gambar untuk Kartu Quiz */
+.quiz-card .card-image {
+    background-image: url('{{ asset('images/home-quiz.png') }}'); 
+    background-size: cover;
+    background-position: center;
+    height: 50%; 
+    width: 100%;
+}
+
+.member-card .card-image {
+    background-image: url('{{ asset('images/home-member.png') }}'); 
+    background-size: cover;
+    background-position: center;
+    height: 50%;
+    width: 100%;
+}
+
+.quiz-card .card-overlay, .member-card .card-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 50%; 
+}
+
+.quiz-card .card-title, .member-card .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.quiz-card .card-button, .member-card .card-button {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.history-card {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    position: relative;
+    color: black;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.history-card .card-image {
+    background-image: url('{{ asset('images/home-history.png') }}');
+    background-size: cover;
+    background-position: center;
+    height: 50%; 
+    width: 100%;
+}
+
+.history-card .card-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 50%;/* Sisa ruang untuk teks dan tombol */
+}
+
+.history-card .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.history-card .card-button {
+    display: inline-block;
+    margin-top: 10px;
+}
+.borrow-card {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    position: relative;
+    color: black;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.borrow-card .card-image {
+    background-image: url('{{ asset('images/home-borrow.png') }}'); 
+    background-size: cover;
+    background-position: center;
+    height: 50%; 
+    width: 100%;
+}
+
+.borrow-card .card-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 50%; 
+}
+
+.borrow-card .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.borrow-card .card-button {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.return-card {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    position: relative;
+    color: black;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.return-card .card-image {
+    background-image: url('{{ asset('images/home-return.png') }}'); 
+    background-size: cover;
+    background-position: center;
+    height: 50%; 
+    width: 100%;
+}
+
+.return-card .card-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 50%;
+}
+
+.return-card .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.return-card .card-button {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+@media (max-width: 767px) {
+    .hero-feature .container {
+        padding: 10px; 
+    }
+
+    .hero-feature .container {
+        padding: 10px; 
+    }
+    .hero-feature .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; 
+    }
+    .card-image {
+        height: 120px; 
+    }
+    .card-overlay {
+        padding: 10px; 
+    }
+    .card-title-fet {
+        font-size: 16px;
+        font-weight:600;
+    }
+    .card-button {
+        font-size: 12px;
+        padding: 6px 12px; 
+    }
+    .feature-section .card {
+        width: 30%; /* Lebar kartu dikurangi untuk tampilan yang lebih kecil */
+        height: 30%;
+        gap: 5px;
+    }
+
+    .feature-section .card img {
+        max-width: 100%; /* Sesuaikan gambar agar tidak melampaui lebar kartu */
+        height: auto; /* Pastikan gambar tetap proporsional */
+    }
+
+    .feature-section h5.card-title {
+        font-size: 16px; /* Kurangi ukuran font judul */
+    }
+
+    .feature-section p.card-text {
+        font-size: 14px; /* Kurangi ukuran font teks */
+    }
+
+    .feature-section .btn {
+        padding: 8px 12px; /* Sesuaikan ukuran tombol */
+        font-size: 14px; /* Kurangi ukuran font tombol */
+    }
+}
+</style>
 @endpush
 
 @section('content')
@@ -31,52 +262,53 @@
     <div class="container">
         <div class="row mt-4">
             <div class="col-md-4">
-                <div class="card text-center">
-                    <i class="fa-regular fa-id-card fa-6x  card-icon mt-5 mb-4" style="color: #f9a825;"></i>
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">Member</h5>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMemberModal">
+                <div class="card text-center member-card">
+                    <div class="card-image"></div> <!-- Gambar home-member.png di bagian atas -->
+                    <div class="card-overlay">
+                        <div class="card-title-fet">Member</div>
+                        <button type="button" class="btn btn-primary card-button" data-toggle="modal" data-target="#addMemberModal">
                             Learn More
                         </button>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card text-center">
-                    <i class="fa-solid fa-gears fa-6x  card-icon mt-5 mb-4" style="color: #f9a825;"></i>
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">Quiz</h5>
-                        <a href="/list-quiz" class="btn btn-primary">Learn More</a>
+                <div class="card text-center quiz-card">
+                    <div class="card-image"></div> <!-- Gambar home-quiz di bagian atas -->
+                    <div class="card-overlay">
+                        <div class="card-title-fet">Quiz</div>
+                        <a href="/list-quiz" class="btn btn-primary card-button">Learn More</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card text-center">
-                    <i class="fa-solid fa-clock-rotate-left fa-6x  card-icon mt-5 mb-4" style="color: #f9a825;"></i>
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">History</h5>
-                        <a href="/history" class="btn btn-primary">Learn More</a>
+                <div class="card text-center history-card">
+                    <div class="card-image"></div> <!-- Gambar home-history.png di bagian atas -->
+                    <div class="card-overlay">
+                        <div class="card-title-fet">History</div>
+                        <a href="/history" class="btn btn-primary card-button">Learn More</a>
+                    </div>
+                </div>
+            </div>            
+            <div class="col-md-4">
+                <div class="card text-center borrow-card">
+                    <div class="card-image"></div> <!-- Gambar home-borrow.png di bagian atas -->
+                    <div class="card-overlay">
+                        <div class="card-title-fet">Pinjam Buku</div>
+                        <a href="/list-book" class="btn btn-primary card-button">Learn More</a>
+                    </div>
+                </div>
+            </div>            
+            <div class="col-md-4">
+                <div class="card text-center return-card">
+                    <div class="card-image"></div> <!-- Gambar home-return.png di bagian atas -->
+                    <div class="card-overlay">
+                        <div class="card-title-fet">Kembali Buku</div>
+                        <a href="/return" class="btn btn-primary card-button">Learn More</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card text-center">
-                    <i class="fa-solid fa-book fa-6x  card-icon mt-5 mb-4" style="color: #f9a825;"></i>
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">Pinjam Buku</h5>
-                        <a href="/list-book" class="btn btn-primary">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card text-center">
-                    <i class="fa-solid fa-book-bookmark fa-6x  card-icon mt-5 mb-4" style="color: #f9a825;"></i>
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">Kembali Buku</h5>
-                        <a href="/return" class="btn btn-primary">Learn More</a>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>
@@ -142,7 +374,7 @@
 <div class="information-section">
     <div class="container text-center">
         <h2>Information Section</h2>
-        <p>Start enjoying your time with exploreing the word</p>
+        <p>Start enjoying your time with exploring the world</p>
         <div class="row">
             <div class="col-md-6 information-image">
                 <img src="images/b-information1.jpg" class="img-fluid" alt="...">
@@ -156,15 +388,15 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-6 information-image">
+                <img src="images/b-information2.jpg" class="img-fluid" alt="...">
+            </div>
             <div class="col-md-6">
                 <div class="card-body">
                     <h5 class="card-title">Hari Kemerdekaan Republik Indonesia</h5>
                     <p class="card-text">Hari Kemerdekaan Bangsa Indonesia adalah hari libur nasional di Indonesia untuk memperingati proklamasi kemerdekaan Bangsa Indonesia pada tanggal 17 Agustus 1945. Yang merupakan deklarasi independensi bangsa Indonesia. Setiap tanggal 17 Agustus, warga Indonesia merayakan dan mensyukuri peringatan kemerdekaan bangsa Indonesia dengan melakukan upacara bendera serta biasanya diselenggarakan berbagai macam perlombaan, yang populer adalah tarik tambang.</p>
                     <a href="https://id.wikipedia.org/wiki/Hari_Kemerdekaan_Republik_Indonesia" class="btn btn-primary" target="_blank">Read More</a>
                 </div>
-            </div>
-            <div class="col-md-6 information-image">
-                <img src="images/b-information2.jpg" class="img-fluid" alt="...">
             </div>
         </div>
     </div>

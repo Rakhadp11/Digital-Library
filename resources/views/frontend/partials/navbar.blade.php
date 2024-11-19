@@ -269,16 +269,33 @@
         .profile {
             margin-left: auto;
         }
-
+        .navbar .dropdown-menu {
+            min-width: 10rem; 
+            right: 0; 
+            left: auto; 
+            transform: translateX(-20%); 
+        }
         .notification {
             margin-top: 20px;
         }
-        .navbar .dropdown-menu {
-            width: 100%;
+
+        .notification .dropdown-menu {
             left: 0;
-            right: 0;
-            position: absolute;
-            top: 60px;
+            right: auto;
+            width: 300px; /* Set an explicit width to make the container wider */
+            max-width: none; /* Remove the max-width limit */
+        }
+
+        .notification .dropdown-item {
+            font-size: 0.85rem; /* Adjust font size for smaller text */
+            padding: 0.5rem; /* Reduce padding for a more compact appearance */
+            white-space: normal; /* Allow wrapping if text is too long */
+        }
+
+        .notification-content {
+            overflow: hidden;
+            text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+            max-width: 200px; /* Set a maximum width for the notification content */
         }
         #logoutModal .modal-dialog {
             margin: 0 auto;    
@@ -288,7 +305,6 @@
         #logoutModal .modal-content {
             width: 80%; 
         }
-        
     }
     .d-none {
         display: none !important;
@@ -299,26 +315,46 @@
 
 @push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var dropdownElement = document.getElementById('notificationDropdown');
-        if (dropdownElement) {
-            new bootstrap.Dropdown(dropdownElement);
-        }
+document.addEventListener('DOMContentLoaded', function () {
+    var dropdownElement = document.getElementById('notificationDropdown');
+    var dropdownMenu = document.querySelector('.notification .dropdown-menu');
 
-        var navbarToggle = document.getElementById('navbarToggle');
-        var userProfile = document.getElementById('userProfile');
+    if (dropdownElement && dropdownMenu) {
+        dropdownElement.addEventListener('click', function (event) {
+            event.preventDefault(); // Mencegah aksi default jika ada
 
-        navbarToggle.addEventListener('click', function () {
-            if (window.innerWidth <= 720) {
-                if (!document.getElementById('navbarNav').classList.contains('show')) {
-                    userProfile.classList.add('d-none');
-                } else {
-                    userProfile.classList.remove('d-none');
-                }
+            // Toggle 'show' class pada dropdown menu
+            if (dropdownMenu.classList.contains('show')) {
+                dropdownMenu.classList.remove('show');
+            } else {
+                dropdownMenu.classList.add('show');
             }
         });
+
+        // Menutup dropdown jika mengklik di luar
+        document.addEventListener('click', function (event) {
+            if (!dropdownElement.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    }
+
+    // Logika sebelumnya untuk menampilkan/menyembunyikan userProfile
+    var navbarToggle = document.getElementById('navbarToggle');
+    var userProfile = document.getElementById('userProfile');
+
+    navbarToggle.addEventListener('click', function () {
+        if (window.innerWidth <= 720) {
+            if (!document.getElementById('navbarNav').classList.contains('show')) {
+                userProfile.classList.add('d-none');
+            } else {
+                userProfile.classList.remove('d-none');
+            }
+        }
     });
+});
 </script>
+
 
 
 <script>
@@ -377,7 +413,7 @@
     });
     </script>
     
-    </script>
+
     
     <script>
         document.addEventListener('DOMContentLoaded', function () {

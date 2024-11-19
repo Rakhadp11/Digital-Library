@@ -26,26 +26,33 @@
 </head>
 <body>
 
-    <!-- Navbar -->
-    @include('frontend.partials.navbar')
-    <!-- Flash Messages -->
-    @if(session()->has('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session('success') }}
+    <div class="wrapper">
+        <!-- Navbar -->
+        @include('frontend.partials.navbar')
+    
+        <!-- Flash Messages -->
+        @if(session()->has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if(session()->has('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
+    
+        <!-- Main Content -->
+        <div class="content">
+            @yield('content')
+        </div>
+    
+        <!-- Footer Section -->
+        @if(!isset($noFooter) || !$noFooter)
+            @include('frontend.partials.footer')
+        @endif
     </div>
-    @endif
-    @if(session()->has('error'))
-    <div class="alert alert-danger" role="alert">
-        {{ session('error') }}
-    </div>
-    @endif
-
-    @yield('content')
-
-    @if(!isset($noFooter) || !$noFooter)
-    <!-- Footer Section -->
-    @include('frontend.partials.footer')
-    @endif
+    
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

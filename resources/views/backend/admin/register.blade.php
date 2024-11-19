@@ -19,25 +19,22 @@
             <h1>Register</h1>
             <p>Enter your account details</p>
             <!-- Flash Messages -->
-            @if(session('error'))
-                <div class="alert alert-danger">
+            @if (session('error') || session('success') || $errors->any())
+            <div class="alert 
+                        {{ session('error') ? 'alert-danger' : '' }} 
+                        {{ session('success') ? 'alert-success' : '' }} 
+                        {{ $errors->any() ? 'alert-danger' : '' }}">
+                @if (session('error'))
                     {{ session('error') }}
-                </div>
-            @endif
-            @if(session('success'))
-                <div class="alert alert-success">
+                @endif
+                @if (session('success'))
                     {{ session('success') }}
-                </div>
-            @endif
-            @if($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+                @endif
+                @if ($errors->any())
+                    {{ $errors->first() }}
+                @endif
+            </div>
+        @endif        
             <form action="{{ route('admin.register-store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="input-group">

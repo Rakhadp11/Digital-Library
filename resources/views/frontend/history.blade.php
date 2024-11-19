@@ -4,95 +4,108 @@
 
 @push('css')
     <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
+           body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-            .content h1 {
-                margin-bottom: 5px;
-            }
+.content h1 {
+    margin-bottom: 5px;
+}
 
-            .content p {
-                margin-bottom: 20px;
-                color: #666;
-            }
+.content p {
+    margin-bottom: 20px;
+    color: #666;
+}
 
-            .content {
-                padding: 20px;
-                text-align: center;
-                width: 100%;
-            }
+.content {
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
 
-            .container-riwayat {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                padding: 20px;
-            }
+.container-riwayat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
 
-            .book-list {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
+.book-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
 
-            .book-card {
-                display: flex;
-                justify-content: space-between;
-                width: 90%; 
-                max-width: 700px; 
-                border: 2px solid #ffeb3b;
-                border-radius: 10px;
-                padding: 20px;
-                margin-bottom: 20px;
-                box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
-            }
+.book-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+    max-width: 700px; 
+    border: 2px solid #ffeb3b;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    background-color: #fff;
+}
 
-            .book-card.green-border {
-                border-color: #88ff00;
-            }
+.book-card.green-border {
+    border-color: #88ff00;
+}
 
-            .book-card img {
-                height: 170px; 
-                margin-right: 20px;
-            }
+.book-card img {
+    max-width: 120px; 
+    max-height: 170px;
+    margin-right: 15px;
+    object-fit: cover;
+}
 
-            .book-details, .user-details {
-                text-align: left;
-            }
+.book-details, .user-details {
+    text-align: left;
+    flex: 1;
+}
 
-            .book-details p, .user-details p {
-                margin: 5px 0;
-            }
+.book-details p, .user-details p {
+    margin: 5px 0;
+}
 
-            .book-status {
-                display: flex;
-                align-items: center;
-            }
+.book-status {
+    display: flex;
+    align-items: center;
+}
 
-            .book-status img {
-                height: 20px;
-                margin-left: 10px;
-            }
+.book-status img {
+    height: 20px;
+    margin-left: 10px;
+}
 
             @media (max-width: 768px) {
                 .book-card {
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                }
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+    }
 
-                .book-details, .user-details {
-                    text-align: center;
-                }
+    .book-card img {
+        width: 100px; 
+        height: auto;
+        margin-bottom: 10px;
+    }
 
-                .book-card img {
-                    height: auto; 
-                }
+    .book-details, .user-details {
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .book-details p, .user-details p {
+        font-size: 14px;
+    }
             }
 
     </style>

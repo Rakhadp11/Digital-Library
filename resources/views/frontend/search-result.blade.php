@@ -27,7 +27,7 @@
         </div>
     @endif
 
-    @if($notifications->count() > 0)
+    {{-- @if($notifications->count() > 0)
         <div class="mt-4">
             @foreach($notifications as $notification)
                 <div class="alert alert-info">
@@ -35,7 +35,7 @@
                 </div>
             @endforeach
         </div>
-    @endif
+    @endif --}}
 </div>
 @endsection
 
